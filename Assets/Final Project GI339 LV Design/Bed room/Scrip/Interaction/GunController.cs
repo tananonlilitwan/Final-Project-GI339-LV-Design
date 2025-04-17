@@ -10,9 +10,16 @@ public class GunController : MonoBehaviour
     public KeyCode fireKey = KeyCode.Mouse0; // ปุ่มยิง (เมาส์ซ้าย)
 
     private bool isGunVisible = true; // สถานะของปืน (ซ่อนหรือแสดง)
+    
+    public bool isInventoryOpen = false; // รับค่านี้จาก PlayerController
+    public bool isLockedByShowcase = false;
+
 
     private void Update()
     {
+        // ❌ ถ้า inventory เปิด หรือกำลังโชว์ไอเท็ม → ห้ามยิง
+        if (isInventoryOpen || isLockedByShowcase) return;
+        
         // เช็คการกดปุ่มยิง
         if (Input.GetKeyDown(fireKey))
         {

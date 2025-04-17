@@ -8,9 +8,13 @@ public class CameraController : MonoBehaviour
     public float distanceFromPlayer = 3f; // ระยะห่างจากตัวละคร
     public float heightOffset = 1.5f; // ความสูงของกล้องจากพื้น
     
-
     private float yaw = 0f; // มุมหมุนของกล้อง
     private float pitch = 0f; // มุมก้มเงยของกล้อง
+    
+    public bool isInventoryOpen = false;
+    public bool isLockedByShowcase = false; // 🔄 เพิ่มตัวแปรนี้
+
+
 
     void Start()
     {
@@ -20,6 +24,10 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        // ถ้ากระเป๋าเปิดหรือ Showcase แสดง → หยุดการหมุนกล้อง
+        if (isInventoryOpen || isLockedByShowcase)
+            return;
+        
         // รับค่าการเคลื่อนเมาส์
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -42,6 +50,5 @@ public class CameraController : MonoBehaviour
         {
             gun.localRotation = Quaternion.Euler(pitch, 0, 0);
         }
-
     }
 }
