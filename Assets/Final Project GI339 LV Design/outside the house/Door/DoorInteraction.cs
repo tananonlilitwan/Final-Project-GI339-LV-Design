@@ -102,6 +102,11 @@ public class DoorInteraction : MonoBehaviour
         
         isOpening = true;
         StartCoroutine(ShowReactionAfterDoorOpened()); // เริ่มคัตซีนหลังประตูเปิด
+        
+        // ✅ ปิด Collider เพื่อไม่ให้ Raycast เจออีก
+        Collider col = GetComponent<Collider>();
+        if (col != null)
+            col.enabled = false;
     }
 
     // แสดงข้อความคัตซีนเมื่อประตูล็อค
@@ -109,11 +114,11 @@ public class DoorInteraction : MonoBehaviour
     {
         // แสดงข้อความ “door locked...”
         cutsceneMessageUI.SetActive(true);
-        messageText.text = "door locked..."; // ประตูถูกล็อค...
+        messageText.text = "[Headhunter] : door locked..."; // ประตูถูกล็อค...
         yield return new WaitForSeconds(messageDuration);
 
         // แสดงข้อความต่อ
-        messageText.text = "I guess I'll have to try finding something to open it."; // ฉันเดาว่าฉันคงต้องพยายามหาอะไรบางอย่างมาเปิดมัน
+        messageText.text = "[Headhunter] : I guess I'll have to try finding something to open it."; // ฉันเดาว่าฉันคงต้องพยายามหาอะไรบางอย่างมาเปิดมัน
         yield return new WaitForSeconds(messageDuration);
         
         // ปิดข้อความ
@@ -148,7 +153,7 @@ public class DoorInteraction : MonoBehaviour
         if (reactionTextUI != null)
         {
             reactionTextUI.SetActive(true);
-            reactionText.text = "What, how did the door open by itself?"; // อะไรนะ ประตูมันเปิดเองได้ยังไง?
+            reactionText.text = "[Headhunter] : What, how did the door open by itself?"; // อะไรนะ ประตูมันเปิดเองได้ยังไง?
         }
 
         yield return new WaitForSeconds(2f);

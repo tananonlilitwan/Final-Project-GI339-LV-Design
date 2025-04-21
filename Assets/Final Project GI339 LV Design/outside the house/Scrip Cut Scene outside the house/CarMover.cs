@@ -20,9 +20,22 @@ public class CarMover : MonoBehaviour
     
     [Header("UI โชว์ไอเท็ม")]
     public GameObject panelItemShowcaseUI; // <-- GameObject ของ Panel ที่มี ItemShowcaseUI อยู่
+    
+    // ✅ areaScopesหลายตัว
+    public GameObject[] areaScopes;
 
     void Start()
     {
+        // ปิดทุก AreaScope ตั้งแต่เริ่ม
+        if (areaScopes != null)
+        {
+            foreach (GameObject scope in areaScopes)
+            {
+                if (scope != null)
+                    scope.SetActive(false);
+            }
+        }
+        
         // ปิด Player และ UI จุดเล็งยิง ตั้งแต่เริ่ม
         if (player != null)
             player.SetActive(false);
@@ -87,6 +100,18 @@ public class CarMover : MonoBehaviour
                 if (dotHitCanvas != null)
                 {
                     dotHitCanvas.SetActive(true);
+                }
+                
+                // ✅ เปิด AreaScope หลายตัว
+                if (areaScopes != null)
+                {
+                    foreach (GameObject scope in areaScopes)
+                    {
+                        if (scope != null)
+                            scope.SetActive(true);
+                    }
+
+                    Debug.Log("เปิด AreaScope ทั้งหมดแล้ว!");
                 }
                 
                 // ปิดกล้องของรถ

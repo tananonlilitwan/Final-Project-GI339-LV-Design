@@ -8,6 +8,11 @@ TagManager:
   - CinemachineTarget
   - Sensor
   - Door
+  - Note
+  - Ghost
+  - police body
+  - Researcher body
+  - 'Body '
   layers:
   - Default
   - TransparentFX
@@ -26,9 +31,9 @@ TagManager:
   - 
   - Interactable
   - Door
-  - 
-  - 
-  - 
+  - Note
+  - Ghost
+  - Cover
   - 
   - 
   - 
