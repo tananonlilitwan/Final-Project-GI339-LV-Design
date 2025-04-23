@@ -40,7 +40,27 @@ public class PlayerInteraction : MonoBehaviour
 
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); // สร้าง Ray สำหรับการตรวจจับ
         RaycastHit hit;  // เก็บข้อมูลการชนของ Ray กับวัตถุ
+        
+        // ตรวจจับ NoteTrigger ก่อนสิ่งอื่น
+        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        {
+            NoteTrigger note = hit.collider.GetComponent<NoteTrigger>();
+            if (note != null && !note.HasRead())
+            {
+                crosshairUI.SetColor(Color.green);
+                interactionText.enabled = true;
+                interactionText.gameObject.SetActive(true);
+                interactionText.text = "Press E to read note";
 
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    note.ReadNote();
+                }
+
+                return; // หยุดการตรวจสอบต่อจากนี้ เพื่อไม่ให้ทับซ้อนกับประตูหรือไอเท็ม
+            }
+        }
+        
         // ตรวจสอบว่ามีการชนกับวัตถุที่สามารถโต้ตอบได้หรือไม่
         if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
         {

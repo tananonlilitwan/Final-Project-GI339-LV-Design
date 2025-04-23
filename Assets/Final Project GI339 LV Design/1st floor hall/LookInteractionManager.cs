@@ -16,6 +16,7 @@ public class LookInteractionManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        interactionText.enabled = false;
         interactionText.gameObject.SetActive(false); // ซ่อนไว้ตอนเริ่ม
     }
 
@@ -31,8 +32,9 @@ public class LookInteractionManager : MonoBehaviour
             if (note != null && !note.HasRead())
             {
                 crosshair.SetColor(Color.green);
+                interactionText.enabled = true;
                 interactionText.gameObject.SetActive(true);
-                interactionText.text = "กด E เพื่ออ่าน";
+                interactionText.text = "Press E";
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -46,5 +48,6 @@ public class LookInteractionManager : MonoBehaviour
         // ไม่เจอ Note
         crosshair.SetColor(Color.white);
         interactionText.gameObject.SetActive(false);
+        interactionText.enabled = false;
     }
 }

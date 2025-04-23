@@ -3,10 +3,9 @@ using UnityEngine;
 public class NoteTrigger : MonoBehaviour
 {
     public string noteID;
-
     private bool hasRead = false;
 
-    void OnTriggerStay(Collider other)
+    /*void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && !hasRead)
         {
@@ -14,7 +13,7 @@ public class NoteTrigger : MonoBehaviour
             hasRead = true;
             Debug.Log("📖 Read Note: " + noteID);
         }
-    }
+    }*/
     
     public bool HasRead()
     {

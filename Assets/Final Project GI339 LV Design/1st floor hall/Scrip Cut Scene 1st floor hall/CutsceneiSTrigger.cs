@@ -29,6 +29,10 @@ public class CutsceneiSTrigger : MonoBehaviour
 
     private bool isClosing = false; // กำลังปิดประตูอยู่หรือไม่
     private float currentAngle = 0f; // มุมที่ปิดประตูไปแล้ว
+    
+    [Header("📦 Events After Cutscene")]
+    public GameObject GlassManager; // วัตถุที่ต้องเปิดหลังจบคัตซีน
+
 
     // เมื่อตัวละครเข้า Collider
     private void OnTriggerEnter(Collider other)
@@ -165,6 +169,10 @@ public class CutsceneiSTrigger : MonoBehaviour
         PlayerController playerCtrl = player.GetComponent<PlayerController>();
         if (playerCtrl != null)
             playerCtrl.enabled = true;
+        
+        // ✅ เปิด GlassManager
+        if (GlassManager != null)
+            GlassManager.SetActive(true);
 
         Destroy(gameObject);  // ทำลาย Trigger ไม่ให้คัตซีนเล่นซ้ำ
     }
