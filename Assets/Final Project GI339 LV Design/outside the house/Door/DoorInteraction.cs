@@ -35,6 +35,10 @@ public class DoorInteraction : MonoBehaviour
     
     [Header("🎮 Crosshair")]
     public Image crosshairImage;        // Image Component สำหรับ Dot Crosshair (จุดเล็ง)
+    
+    [Header("👾 Zombie Spawner")]
+    public GameObject zombieSpawner;  // ZombieSpawner GameObject
+
 
 
     // เรียกเมื่อผู้เล่นกด E ขณะเล็งประตู
@@ -107,6 +111,10 @@ public class DoorInteraction : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = false;
+        
+        // ปิด ZombieSpawner
+        if (zombieSpawner != null)
+            zombieSpawner.SetActive(false);
     }
 
     // แสดงข้อความคัตซีนเมื่อประตูล็อค

@@ -2,20 +2,24 @@ using UnityEngine;
 using UnityEngine.UI; // ← ✅ สำคัญ! เพื่อให้ใช้ Image ได้
 using TMPro;
 
-public class NoteInteraction : MonoBehaviour
+public class NoteInteractionOutsideThehouse : MonoBehaviour
 {
-    public float interactRange = 30f;
+    [Header("Raycast Settings")]
+    [SerializeField] public float interactRange;
     public LayerMask interactLayer;
+    
+    [Header("UI Elements")]
     public Image crosshair; // ปรับสีเวลาเจอ Note
     public TextMeshProUGUI interactPrompt;
     public GameObject noteUI;
     public TextMeshProUGUI noteText;
 
-    private Camera cam;
-    private NoteComponent currentNote;
-    
+    [Header("Player References")]
     public CameraController playerLook;              // Drag ตัวควบคุมกล้องมาที่ Inspector
     public PlayerController playerMovement;      // Drag ตัวควบคุมการเดินมาที่ Inspector
+    
+    private Camera cam;
+    private NoteComponent currentNote;
 
 
     void Start()
@@ -43,7 +47,7 @@ public class NoteInteraction : MonoBehaviour
         }
 
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        //Debug.DrawRay(ray.origin, ray.direction * interactRange, Color.green); // 👈 ดูเส้นยิง
+        Debug.DrawRay(ray.origin, ray.direction * interactRange, Color.green); // 👈 ดูเส้นยิง
         
         if (Physics.Raycast(ray, out RaycastHit hit, interactRange, interactLayer))
         {
@@ -55,7 +59,7 @@ public class NoteInteraction : MonoBehaviour
                 //Debug.Log("NoteComponent found: " + note.noteContent); // 👈 เช็คว่ามีคอมโพเนนต์
                 
                 crosshair.color = Color.green;
-                interactPrompt.text = "Press E to Read";
+                interactPrompt.text = "Press E";
                 interactPrompt.enabled = true;
                 currentNote = note;
 

@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [Header("Singleton Instance")]
     public static PlayerInventory Instance; // ใช้ Singleton เพื่อเรียกใช้งานจากที่ไหนก็ได้
+    
+    [Header("Singleton Instance")]
     private List<int> keys = new List<int>(); // รายการกุญแจที่ผู้เล่นมี
 
     private void Awake()

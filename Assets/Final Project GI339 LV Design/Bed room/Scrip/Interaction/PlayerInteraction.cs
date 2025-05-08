@@ -4,13 +4,18 @@ using System.Collections;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [Header("Interaction Settings")]
     [SerializeField] public float interactDistance; // ระยะตรวจจับวัตถุ
     public LayerMask interactableLayer; // เลเยอร์ที่เป็นวัตถุโต้ตอบได้
-    public Crosshair crosshairUI; // อ้างถึง UI จุดตรงกลางหน้าจอ
     
+    [Header("UI References")]
+    public Crosshair crosshairUI; // อ้างถึง UI จุดตรงกลางหน้าจอ
     public TextMeshProUGUI interactionText; // <- ✅ ลาก Text UI จาก Canvas มาวางใน Inspector
     
+    [Header("Internal References")]
     private DoorController currentDoor; // ประตูที่กำลังโต้ตอบอยู่
+    
+    [Header("Singleton")]
     public static PlayerInteraction Instance;
 
     void Awake()
@@ -123,6 +128,14 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer)) // ตรวจสอบว่าชนกับวัตถุที่สามารถเก็บได้หรือไม่
         {
+            // 🎯 กรณีพิเศษ: ไอเท็มที่ไม่เข้า inventory แต่หายไปเลย
+            if (hit.collider.CompareTag("PickupOnly"))
+            {
+                Destroy(hit.collider.gameObject);
+                Debug.Log("Picked up object and removed from scene (no inventory)");
+                return;
+            }
+            
             KeyPickup key = hit.collider.GetComponent<KeyPickup>(); // ถ้าวัตถุที่ชนเป็น KeyPickup
             if (key != null && PlayerInventory.Instance != null)
             {

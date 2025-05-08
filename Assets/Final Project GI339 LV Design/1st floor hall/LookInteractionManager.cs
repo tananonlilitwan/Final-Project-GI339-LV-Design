@@ -4,13 +4,14 @@ using TMPro;
 public class LookInteractionManager : MonoBehaviour
 {
     [Header("Raycast Settings")]
-    public float rayDistance = 40f;
+    [SerializeField] public float rayDistance;
     public LayerMask interactableLayer;
 
-    [Header("UI")]
+    [Header("UI References")]
     public Crosshair crosshair;               // ลิงก์ไปยังสคริปต์ Crosshair
     public TMP_Text interactionText;          // UI ที่แสดงคำว่า "กด E เพื่ออ่าน"
-
+    
+    [Header("Internal References")]
     private Camera cam;
 
     void Start()
@@ -22,6 +23,8 @@ public class LookInteractionManager : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * rayDistance, Color.magenta);
+        
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit hit;
 

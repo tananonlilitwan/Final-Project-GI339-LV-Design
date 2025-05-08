@@ -245,7 +245,7 @@ public class GlassBreakTriggerManager : MonoBehaviour
         
         SwitchToPlayerCamera();
         
-        dialogText.text = "Press E (Left) or Q (Right) to take cover.";
+        dialogText.text = "Press (E) or (Q) to take cover."; //Press E (Left) or Q (Right) to take cover.
         yield return new WaitForSeconds(0.5f); // เพิ่ม delay เล็กน้อยให้ผู้เล่นทันเห็นข้อความ
         waitingForCoverChoice = true; // ✅ ป้องกันเงื่อนไขไม่ทำงาน
     }

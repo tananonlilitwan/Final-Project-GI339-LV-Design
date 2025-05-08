@@ -37,12 +37,12 @@ public class BodyDialogue : MonoBehaviour
     // ✅ อ้างถึง GlassBreakTriggerManager
     public GlassBreakTriggerManager glassManager;
     private HashSet<string> bodiesChecked = new HashSet<string>();
-
+    
     void Start()
     {
         if (crosshairScript != null)
         {
-            crosshairScript.SetColor(Color.magenta); // สีเริ่มต้นที่ชัดเจน
+            crosshairScript.SetColor(defaultColor); // เปลี่ยนจาก magenta เป็น defaultColor (สีขาว)
             Debug.Log("เริ่มต้นสี Crosshair");
         }
     }

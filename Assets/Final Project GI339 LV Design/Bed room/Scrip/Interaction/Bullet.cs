@@ -20,6 +20,15 @@ public class Bullet : MonoBehaviour
                 ghost.OnHitByBullet();
             }
         }
+        
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            ZombieAI zombie = collision.gameObject.GetComponent<ZombieAI>();
+            if (zombie != null)
+            {
+                zombie.OnHitByBullet();
+            }
+        }
 
         // ไม่ว่าจะโดนอะไร ก็ทำลายกระสุน
         Destroy(gameObject);

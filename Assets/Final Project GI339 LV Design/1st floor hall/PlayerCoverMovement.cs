@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerCoverMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // ความเร็วในการเคลื่อนที่
-    public float raycastDistance = 2f; // ระยะทางการตรวจจับด้วย Raycast
+    [SerializeField] public float moveSpeed; // ความเร็วในการเคลื่อนที่
+    [SerializeField]public float raycastDistance; // ระยะทางการตรวจจับด้วย Raycast
     public LayerMask coverLayer; // เลเยอร์ที่ใช้ในการตรวจสอบ (เช่น "Cover")
     public bool canMove = true;
 

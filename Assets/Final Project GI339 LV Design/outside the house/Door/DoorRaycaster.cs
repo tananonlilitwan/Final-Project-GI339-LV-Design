@@ -4,13 +4,16 @@ using TMPro;
 
 public class DoorRaycaster : MonoBehaviour
 {
-    public float interactRange = 3f; // ระยะทางที่สามารถตรวจจับการมองเห็นประตูได้
+    [Header("Raycast Settings")]
+    [SerializeField] public float interactRange; // ระยะทางที่สามารถตรวจจับการมองเห็นประตูได้
     public LayerMask doorLayer; // กำหนดให้ประตูอยู่ในเลเยอร์นี้ "Door"
 
+    [Header("Crosshair UI")]
     public Image crosshairImage; // 🎯 รูปภาพ Dot Crosshair
     public Color defaultColor = Color.white; // สีปกติของ Crosshair
     public Color highlightColor = Color.green;  // สีเมื่อมองไปที่ประตู
     
+    [Header("Press E UI")]
     // ✅ เพิ่มตัวแปรสำหรับข้อความ "Press E"
     public GameObject pressEUI; // GameObject ที่มีข้อความ "Press E"
     public TextMeshProUGUI pressEText;

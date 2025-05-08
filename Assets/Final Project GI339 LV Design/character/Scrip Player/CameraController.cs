@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("References")]
     public Transform player; // ตัวละครที่กล้องต้องติดตาม
     public Transform gun; // ปืนที่จะขยับ
+    
+    [Header("Camera Settings")]
     public float mouseSensitivity = 3f; // ความไวของเมาส์
     public float distanceFromPlayer = 3f; // ระยะห่างจากตัวละคร
     public float heightOffset = 1.5f; // ความสูงของกล้องจากพื้น
     
+    [Header("Camera Rotation")]
     private float yaw = 0f; // มุมหมุนของกล้อง
     private float pitch = 0f; // มุมก้มเงยของกล้อง
     
+    [Header("Control Flags")]
     public bool isInventoryOpen = false;
     public bool isLockedByShowcase = false; // 🔄 เพิ่มตัวแปรนี้
 
